@@ -9,6 +9,6 @@
       rootEl.appendChild(image);
       console.log(data)
   })
-  .catch(err => alert('Error'));
+  .catch(err => alert('Something went wrong'));
 
   

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog photo gallery</title>
+    <style>
+        #root{
+            width: 50%;
+            margin: auto;
+        }
+        img{  
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <button id="button">change a dog</button>
+    <ul></ul>
+    <div id="root"></div>
+    <script>   
+        
+            const root = document.getElementById("root");
+            const button = document.getElementById("button");
+            const list = document.querySelector("ul");
+            const listItem = document.createElement("li");
+            list.appendChild(listItem);
+            const image = document.createElement("img");
+
+            const clickButton = () => {
+               
+                fetch(`https://dog.ceo/api/breeds/image/random`)
+                    .then((response) => response.json())
+                    .then((data) => {                       
+                        image.setAttribute("src", data.message);
+                    })
+                    .catch((err) => alert('Something went wrong'));
+            };
+          
+            button.addEventListener("click", () => {
+                clickButton();
+            });
+
+            listItem.appendChild(image);         
+
+            window.onload = clickButton();
+                
+    </script>
+</body>
+</html>
